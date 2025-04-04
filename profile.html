@@ -1,12 +1,67 @@
-<html>
-    <head>
-        <title>Perfil</title>
-    </head>
-    <body>
-        <h1>Perfil de usuario</h1>
-        <p>¡Bienvenid@s!, <span id="usernameDisplay">Usuario</span>!(ID: <span id="userIdDisplay">?</span>)</p>
-        <p>(Esta página es accesible si guardamos el ID en localStorage, pero aún no es segura.)</p>
-        <button id="logoutButton">Logout</button>
-        <script src="profile.js"></script>
-    </body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background: white;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Perfil de Usuario</h1>
+        <p>¡Bienvenid@, <span id="usernameDisplay">Usuario</span>! </p>
+        <button id="logoutButton">Cerrar sesión</button>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const username = localStorage.getItem("username") || "Invitado";
+            const userId = localStorage.getItem("userId") || "?";
+            document.getElementById("usernameDisplay").textContent = username;
+            document.getElementById("userIdDisplay").textContent = userId;
+        });
+
+        document.getElementById("logoutButton").addEventListener("click", function() {
+            localStorage.removeItem("username");
+            localStorage.removeItem("userId");
+            window.location.href = "index.html";
+        });
+    </script>
+</body>
 </html>
+
